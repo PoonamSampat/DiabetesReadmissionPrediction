@@ -16,7 +16,7 @@ Models to predict diabetes readmission and important factors affecting the same.
 3. Run Logisticregression in python environment.
 4. Run ClassifierDiabetes in python environment.
 
-Recommendation & Business Solution:
+# Recommendation & Business Solution:
 •	Using Association Rules could conclude that inpatient visits, discharge disposition and admission type were 
 strong predictors of readmission. It was found that the number of laboratory tests and discharge disposition together 
 predict whether the patient will be readmitted shortly after being discharged from the hospital (i.e. <30 days) 
