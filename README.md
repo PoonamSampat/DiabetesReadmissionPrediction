@@ -21,8 +21,10 @@ Models to predict diabetes readmission and important factors affecting the same.
 strong predictors of readmission. It was found that the number of laboratory tests and discharge disposition together 
 predict whether the patient will be readmitted shortly after being discharged from the hospital (i.e. <30 days) 
 or after a longer period of time (i.e. >30 days).
+
 •	Using Logistic Regression , the important features identified was discharge deposition - 
 Discharged/transferred to home under care of Home IV provider, Neonate discharged to another hospital for neonatal aftercare,
 Admission Source - Transfer from critial access hospital, Transfer from critial access hospital,Sick Baby, Accuracy – 52%.
+
 •	Used Decision Tree Classifier features that were important here number of readmissions with 44% accuracy.
 
