@@ -1,0 +1,89 @@
+---
+title: "DiabetesAssociationRules"
+author: "Poonam Sampat"
+date: "September 15, 2018"
+output: html_document
+---
+
+## Used Association Rules, to conclude the important rules that lead to admission for > 30 days, lesser than 30 days and no admissions.
+Flow
+1.Have created the input as a basket of features.
+2.Used support, lift to filter the rules for the categories.
+3.Removed any repeatitive rules.
+
+
+#Install Required Packages.
+```{r Packages}
+if (!require(Matrix)) {install.packages("Matrix")}
+if (!require(arules)) {install.packages("arules")}
+if (!require(arulesViz)) {install.packages("arulesViz")}
+
+library("Matrix")
+library("arules")
+library("arulesViz")
+```
+
+## Read the input data as a basket, have created the same using Python.
+
+
+```{r readFile}
+trs <- read.transactions("C:\\Users\\H219960\\Desktop\\Personal\\ISB\\Classes\\Term3\\Pract2\\basket_diab.csv", format = "basket", sep=",")
+```
+
+#Rules for greater than 30 days.
+Have considered confidence as 50%.
+
+We can see around 5124 rules. 
+
+```{r}
+rgrt30.association.rules <- apriori(trs, parameter = list(supp=0.001, conf=0.5),appearance = list(default="lhs",rhs="readmitted>30"))
+
+inspect(head(sort(rgrt30.association.rules, by="lift")))
+```
+# Are there any redudant rules?
+Yes reduced viable rules from around 5128 to 3908!!
+
+Lets understand these rules:
+1. No# of emergency visit =1, diag_1=498,Discharged 
+2.diag_2=428,timeinhosipital=6,Admission Source = Emergency Room,Admission Type = Urgent
+3.diag_1 = 428, diag_2= 491 and a Physician Referral.
+4. No# of emergency visit =1,diag_2 = 403,Discharged to home.
+5. Age 60-70,Diag_1 =491, Discharged/transferred to home with home health service
+```{r}
+subset.rules <- which(colSums(is.subset(rgrt30.association.rules, rgrt30.association.rules)) > 1) # get subset rules in vector
+length(subset.rules)  
+
+rgrt30.subset.association.rules <- rgrt30.association.rules[-subset.rules] # remove subset rules.
+
+inspect(head(sort(rgrt30.subset.association.rules, by="lift")))
+```
+#Plotting the data.
+```{r}
+plot(rgrt30.subset.association.rules)
+```
+```{r}
+plot(rgrt30.subset.association.rules[1:10], method = "graph",  engine = "htmlwidget")
+```
+
+#Similar excerise for readmitted<30.
+```{r}
+rless30.association.rules <- apriori(trs, parameter = list(supp=0.001, conf=0.2),appearance = list(default="lhs",rhs="readmitted<30"))
+
+subset.rules <- which(colSums(is.subset(rless30.association.rules, rless30.association.rules)) > 1) # get subset rules in vector
+length(subset.rules)  #> 3913
+
+rless30.association.rules <- rless30.association.rules[-subset.rules] # remove subset rules.
+
+inspect(head(sort(rless30.association.rules, by="lift")))
+
+inspect(rless30.association.rules[1:25])
+```
+
+```{r}
+Notreadmit.association.rules <- apriori(trs, parameter = list(supp=0.001, conf=0.5,maxlen =3), appearance = list(default="lhs",rhs="Not-readmitted"))
+
+inspect(Notreadmit.association.rules[1:50])
+
+inspect(head(sort(Notreadmit.association.rules, by="lift")))
+```
+
