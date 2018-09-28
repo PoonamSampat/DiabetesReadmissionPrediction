@@ -7,7 +7,7 @@ Models to predict diabetes readmission and important factors affecting the same.
 4.	Run a logistic regression, to understand what features contribute to the model. Also predict the event re-admission.
 5.	Classify the data using a Decision Tree Classifier to get the important features and a classification of re-admission
 
-# Data: https://archive.ics.uci.edu/ml/datasets/Diabetes+130US+hospitals+for+years+1999-2008# 
+# Data: https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008
 
 # To run the code:
 
