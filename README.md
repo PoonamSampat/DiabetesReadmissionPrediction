@@ -22,7 +22,7 @@ strong predictors of readmission. It was found that the number of laboratory tes
 predict whether the patient will be readmitted shortly after being discharged from the hospital (i.e. <30 days) 
 or after a longer period of time (i.e. >30 days).
 
-•	Using Logistic Regression , the important features identified was discharge deposition - 
+•	Using Logistic Regression , the important features identified were discharge deposition - 
 Discharged/transferred to home under care of Home IV provider, Neonate discharged to another hospital for neonatal aftercare,
 Admission Source - Transfer from critial access hospital, Transfer from critial access hospital,Sick Baby, Accuracy – 52%.
 
